@@ -1,0 +1,9 @@
+pydantic
+pydantic_settings
+
+#testing  pytest tests/test_settings.py
+pytest  #pytest is a testing framework for Python that allows you to write test cases for your code. It provides a simple and easy-to-use interface for writing tests, and it can automatically discover and run tests in your project.
+
+#Langchain Modules
+langchain
+langchain_huggingface
