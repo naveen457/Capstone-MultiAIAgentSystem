@@ -9,7 +9,7 @@ class Settings(BaseSettings):
 
     # LLM
     LLM_PROVIDER: str = "huggingface"
-    LLM_MODEL: str = "meta-llama/Llama-3.1-405B-Instruct"
+    LLM_MODEL: str = "meta-llama/Llama-3.1-70B-Instruct:featherless-ai"
 
     # LangSmith
     LANGCHAIN_TRACING_V2: bool = False

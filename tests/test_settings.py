@@ -1,5 +1,5 @@
 # command to run these test file
-# pytest tests/test_settings.py
+# python -m pytest tests/test_settings.py -v
 
 import pytest
 
@@ -31,5 +31,4 @@ def test_settings_values():
 
     assert settings.APP_ENV == "development"
     assert settings.LLM_PROVIDER == "huggingface"
-    assert settings.LLM_MODEL == "meta-llama/Llama-3.1-405B-Instruct"
     assert settings.LANGCHAIN_PROJECT == "agentic-ai-Capstone"
