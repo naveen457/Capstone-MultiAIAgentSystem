@@ -6,4 +6,8 @@ pytest  #pytest is a testing framework for Python that allows you to write test 
 
 #Langchain Modules
 langchain
+langchain_community
 langchain_huggingface
+
+#research papers
+arxiv
