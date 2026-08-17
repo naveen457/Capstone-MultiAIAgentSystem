@@ -14,6 +14,7 @@ def test_settings_loads_configuration():
     assert settings.LLM_MODEL is not None
     assert settings.LANGCHAIN_PROJECT is not None
     assert settings.HUGGINGFACEHUB_API_KEY is not None
+    assert settings.TAVILY_API_KEY is not None
 
 
 def test_settings_types():

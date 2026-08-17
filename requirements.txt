@@ -10,4 +10,7 @@ langchain_community
 langchain_huggingface
 
 #research papers
-arxiv
+arxiv<3
+
+#web search
+langchain_tavily

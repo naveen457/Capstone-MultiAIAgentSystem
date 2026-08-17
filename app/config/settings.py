@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     LLM_PROVIDER: str = "huggingface"
     LLM_MODEL: str = "meta-llama/Llama-3.1-70B-Instruct:featherless-ai"
 
+    # tavily search
+    TAVILY_API_KEY: str | None = None
+
     # LangSmith
     LANGCHAIN_TRACING_V2: bool = False
     LANGCHAIN_ENDPOINT: str | None = None

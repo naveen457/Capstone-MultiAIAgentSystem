@@ -1,5 +1,26 @@
-from app.chains.test import chain
+from app.orchestration.graph import graph
 
-query = "Write about India in future"
-result = chain.invoke({"topic": query})
-print(result)
+
+def run_app(query: str):
+
+    result = graph.invoke(
+        {
+            "query": query,
+            "messages": [],
+        }
+    )
+
+    return result["final_answer"]
+
+
+if __name__ == "__main__":
+
+    query = input("What would you like me to research?\n> ")
+
+    answer = run_app(query)
+
+    print("\n==============================")
+    print("RESEARCH REPORT")
+    print("==============================\n")
+
+    print(answer)

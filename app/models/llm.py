@@ -1,18 +1,15 @@
 from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
-from app.config.settings import Settings
-
-settings = Settings()
+from app.config.constants import constants
 
 
-def Model():
+def create_model():
     llm = HuggingFaceEndpoint(
-        repo_id=settings.LLM_MODEL,
+        repo_id=constants.LLM_MODEL,
         task="text-generation",
     )
 
     model = ChatHuggingFace(llm=llm)
-
     return model
 
 
-model = Model()
+model = create_model()
