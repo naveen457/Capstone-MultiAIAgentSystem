@@ -1,5 +1,6 @@
 # command to run these test file
 # python -m pytest tests/test_settings.py -v
+#testing purpose only
 
 import pytest
 
