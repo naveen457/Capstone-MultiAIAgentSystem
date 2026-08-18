@@ -8,6 +8,8 @@ pytest  #pytest is a testing framework for Python that allows you to write test 
 langchain
 langchain_community
 langchain_huggingface
+langchain-google-genai
+langchain-openai
 
 #research papers
 arxiv<3

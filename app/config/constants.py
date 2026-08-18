@@ -8,9 +8,9 @@ class Constants:
     STATUS_COMPLETED = "completed"
     STATUS_FAILED = "failed"
 
-    # LLM
-    LLM_PROVIDER: str = "huggingface"
-    LLM_MODEL: str = "google/gemma-4-31B-it:novita"
+    # LLM no need since me moved entirly to open router platform api key does to more available credits
+    # LLM_PROVIDER: str = "huggingface"
+    # LLM_MODEL: str = "deepseek-ai/DeepSeek-V4-Flash"
 
 
 constants = Constants()

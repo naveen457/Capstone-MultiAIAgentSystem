@@ -8,7 +8,7 @@ from app.tools.arxiv import arxiv_tool
 from app.tools.web_search import web_search_tool
 
 from app.chains.research_chain import create_research_plan
-from langchain_core.messages import SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
 tools = [arxiv_tool, web_search_tool]
 
@@ -24,8 +24,7 @@ def planner_node(state: ResearchState) -> ResearchState:
 
 def research_node(state: ResearchState):
 
-    messages = [
-        SystemMessage(content="""
+    system_message = SystemMessage(content="""
 You are a research agent.
 
 Use the available research tools to investigate
@@ -34,20 +33,22 @@ the user's research question.
 Prefer arXiv for academic papers.
 Use web search only when additional information
 is required.
-"""),
-        {
-            "role": "user",
-            "content": f"""
+""")
+
+    messages = state.get("messages", [])
+
+    if not messages:
+        messages = [
+            HumanMessage(content=f"""
 Research question:
 {state["query"]}
 
 Research plan:
 {state.get("plan", [])}
-""",
-        },
-    ]
+""")
+        ]
 
-    response = model_with_tools.invoke(messages)
+    response = model_with_tools.invoke([system_message, *messages])
 
     return {"messages": [response]}
 

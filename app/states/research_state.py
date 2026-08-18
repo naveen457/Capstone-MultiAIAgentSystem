@@ -1,4 +1,5 @@
-from typing import TypedDict
+from typing import Annotated, TypedDict
+from langgraph.graph.message import add_messages
 from langchain_core.documents import Document
 
 
@@ -9,4 +10,4 @@ class ResearchState(TypedDict):
     findings: list[str]
     analysis: str
     final_answer: str
-    messages: list
+    messages: Annotated[list, add_messages]
