@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
-from langchain_core.output_parsers import PydanticOutputParser
+from typing import Literal
+from langchain_core.output_parsers import PydanticOutputParser, StrOutputParser
 
 
 class ResearchPlan(BaseModel):
@@ -25,6 +26,14 @@ class ResearchReport(BaseModel):
     conclusion: str
 
 
+class RouteDecision(BaseModel):
+    route: Literal["research", "qa", "summarize", "planning"] = Field(
+        description="Route the decision to one of these based on the user query."
+    )
+
+
+route_decision_parser = PydanticOutputParser(pydantic_object=RouteDecision)
 research_plan_parser = PydanticOutputParser(pydantic_object=ResearchPlan)
 
 research_report_parser = PydanticOutputParser(pydantic_object=ResearchReport)
+final_response_parser = StrOutputParser()

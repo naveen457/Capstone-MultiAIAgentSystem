@@ -7,7 +7,8 @@ class ResearchState(TypedDict):
     query: str
     plan: list[str]
     papers: list[Document]
-    findings: list[str]
+    paper_findings: list[str]
+    web_findings: list[str]
     analysis: str
     final_answer: str
     messages: Annotated[list, add_messages]

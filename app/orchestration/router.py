@@ -1,3 +1,1 @@
-def route_query(query: str) -> str:
-
-    return "research"
+from app.chains.router_chain import route_query

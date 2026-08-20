@@ -6,7 +6,6 @@ def run_app(query: str):
     result = graph.invoke(
         {
             "query": query,
-            "messages": [],
         }
     )
 
@@ -20,7 +19,7 @@ if __name__ == "__main__":
     answer = run_app(query)
 
     print("\n==============================")
-    print("RESEARCH REPORT")
+    print("OUTPUT")
     print("==============================\n")
 
     print(answer)
