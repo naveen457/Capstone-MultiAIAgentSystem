@@ -27,7 +27,7 @@ class ResearchReport(BaseModel):
 
 
 class RouteDecision(BaseModel):
-    route: Literal["research", "qa", "summarize", "planning"] = Field(
+    route: Literal["research", "websearch", "qa", "summarize", "planning"] = Field(
         description="Route the decision to one of these based on the user query."
     )
 

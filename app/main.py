@@ -14,7 +14,7 @@ def run_app(query: str):
 
 if __name__ == "__main__":
 
-    query = input("What would you like me to research?\n> ")
+    query = input("What would you like me to do?\n> ")
 
     answer = run_app(query)
 

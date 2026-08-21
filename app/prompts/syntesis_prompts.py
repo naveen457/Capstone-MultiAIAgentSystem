@@ -23,6 +23,7 @@ Research question:
 {query}
 Findings:
 {findings}
+
 {format_instructions}
 """,
     input_variables=["query", "findings"],

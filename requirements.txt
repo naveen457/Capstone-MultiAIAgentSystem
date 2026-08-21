@@ -10,6 +10,7 @@ langchain_community
 langchain_huggingface
 langchain-google-genai
 langchain-openai
+langchain-nvidia-ai-endpoints
 
 #research papers
 arxiv<3

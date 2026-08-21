@@ -1,6 +1,6 @@
 from langchain_core.prompts import PromptTemplate
 
-final_response_prompt = PromptTemplate(
+final_response_prompt_web_research = PromptTemplate(
     template="""You are a helpful assistant.
 
 Write a clear chat-style response for the user.

@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     HUGGINGFACEHUB_API_KEY: str | None = None
     GOOGLE_API_KEY: str | None = None
     OPENROUTER_API_KEY: str | None = None
+    NVIDIA_API_KEY: str | None = None
 
     @field_validator("DEBUG", mode="before")
     @classmethod

@@ -5,7 +5,8 @@ from app.parsers.output_parsers import route_decision_parser
 router_prompt = PromptTemplate(
     template="""You are the routing agent for a multi-agent assistant. 
 Classify the user's request into exactly one route:
-- research: Requires external information, papers, web search, current information, evidence, or comparison of sources.
+- research: Requires arXiv papers, academic research, evidence synthesis, or comparison of papers and sources.
+- websearch: Requires common factual lookup, current web information, or fresh external source checking.
 - qa: General question that can be answered from the model's existing knowledge without external research.
 - summarize: User wants existing content condensed or summarized.
 - planning: User wants a plan, roadmap, strategy, or sequence of actions.

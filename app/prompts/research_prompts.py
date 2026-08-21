@@ -7,6 +7,12 @@ research_planner_prompt = PromptTemplate(
 
 Your task is to convert the user's research question into a clear research plan.
 
+Before planning, decide the best source order based on the query:
+1. Use the dates tool first only if the user asks for the current date or time.
+2. Prefer arXiv first for academic or paper-based questions.
+3. If arXiv results are not enough, use the dedicated web-search subgraph next.
+4. Do not use web search if the question can be answered fully from papers.
+
 Determine:
 1. What concepts need to be investigated.
 2. What types of papers should be searched.

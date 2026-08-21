@@ -1,3 +1,21 @@
+# from langchain_nvidia_ai_endpoints import ChatNVIDIA
+# from app.config.settings import settings
+
+
+# def create_model():
+#     model = ChatNVIDIA(
+#         # Use the standard NVIDIA NIM model identifier
+#         model="minimaxai/minimax-m3",
+#         # Pass your official NVIDIA API key here
+#         nvidia_api_key=settings.NVIDIA_API_KEY,
+#         temperature=0,
+#     )
+#     return model
+
+
+# model = create_model()
+
+
 from langchain_openai import ChatOpenAI
 
 from app.config.settings import settings
