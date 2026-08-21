@@ -1,13 +1,13 @@
-class MemoryManager:
+import sqlite3
+from pathlib import Path
 
-    def __init__(self):
-        self.history = []
+from langgraph.checkpoint.sqlite import SqliteSaver
 
-    def add(self, item):
-        self.history.append(item)
+DB_PATH = Path(__file__).resolve().parent / "checkpoints.db"
 
-    def get_history(self):
-        return self.history
+conn = sqlite3.connect(
+    str(DB_PATH),
+    check_same_thread=False,
+)
 
-    def clear(self):
-        self.history.clear()
+checkpointer = SqliteSaver(conn)

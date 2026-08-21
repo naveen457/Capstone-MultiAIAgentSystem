@@ -1,3 +1,4 @@
+from langchain_core.messages import BaseMessage
 from app.models.llm import model
 from app.prompts.final_response_prompt_web_research import (
     final_response_prompt_web_research,
@@ -29,7 +30,16 @@ def format_final_response_web_research(
     return response
 
 
-def format_final_response_general(query: str) -> str:
-    """Provide direct answers based on the users question properly"""
-    response = final_response_chain_general.invoke({"query": query})
+def format_final_response_general(
+    query: str,
+    messages: list[BaseMessage],
+) -> str:
+
+    response = final_response_chain_general.invoke(
+        {
+            "query": query,
+            "messages": messages,
+        }
+    )
+
     return response

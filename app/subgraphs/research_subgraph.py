@@ -37,16 +37,6 @@ def planner_node(state: ResearchState) -> ResearchState:
 
 
 def research_node(state: ResearchState):
-    """
-    Research agent.
-
-    The model can decide whether to use:
-    - arXiv
-    - dates
-
-    Web search is handled separately by the graph after analysis.
-    """
-
     system_message = SystemMessage(content="""
 You are a research agent.
 
@@ -74,10 +64,8 @@ Rules:
   and provide a concise research response.
 """)
 
-    # Get existing conversation/tool history
     messages = state.get("messages", [])
 
-    # First invocation
     if not messages:
         messages = [HumanMessage(content=f"""
 Research question:
@@ -87,8 +75,6 @@ Research plan:
 {state.get("plan", [])}
 """)]
 
-    # IMPORTANT:
-    # This is the tool-enabled model call.
     response = model_with_tools.invoke([system_message, *messages])
 
     return {"messages": [response]}

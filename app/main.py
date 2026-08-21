@@ -1,12 +1,22 @@
 from app.orchestration.graph import graph
+from langchain_core.messages import HumanMessage, SystemMessage
+
+config = {
+    "configurable": {
+        "thread_id": "admin",
+    },
+}
 
 
 def run_app(query: str):
-
     result = graph.invoke(
         {
             "query": query,
-        }
+            "messages": [
+                HumanMessage(content=query),
+            ],
+        },
+        config=config,
     )
 
     return result["final_answer"]
@@ -14,12 +24,14 @@ def run_app(query: str):
 
 if __name__ == "__main__":
 
-    query = input("What would you like me to do?\n> ")
+    print("What would you like me to do?")
 
-    answer = run_app(query)
+    while True:
+        query = input("> ")
 
-    print("\n==============================")
-    print("OUTPUT")
-    print("==============================\n")
+        if query.lower() == "exit":
+            break
 
-    print(answer)
+        answer = run_app(query)
+
+        print(answer)

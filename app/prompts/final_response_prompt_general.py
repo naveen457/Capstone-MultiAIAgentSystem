@@ -3,10 +3,15 @@ from langchain_core.prompts import PromptTemplate
 final_response_prompt_general = PromptTemplate(
     template="""You are a helpful assistant.
 
-Write a clear chat-style response for the user.
+Use the previous conversation when it is relevant to the user's current question.
 
-User query:
+Previous conversation:
+{messages}
+
+Current user query:
 {query}
+
+Write a clear, natural chat-style response.
 """,
-    input_variables=["query"],
+    input_variables=["messages", "query"],
 )

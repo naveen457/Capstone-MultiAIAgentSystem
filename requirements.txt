@@ -17,3 +17,6 @@ arxiv<3
 
 #web search
 langchain_tavily
+#memory
+langgraph-checkpoint-sqlite
+ormsgpack>=1.12.0

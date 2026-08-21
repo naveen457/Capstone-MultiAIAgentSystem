@@ -1,9 +1,11 @@
 from langgraph.graph import StateGraph, START, END
+from langchain_core.runnables import RunnableConfig
 from app.chains.router_chain import route_query
 from app.chains.final_response_chain import (
     format_final_response_web_research,
     format_final_response_general,
 )
+from app.memory.memory_manager import checkpointer
 from app.states.global_state import GlobalState
 from app.states.research_state import ResearchState
 from app.subgraphs.research_subgraph import research_graph
@@ -17,21 +19,27 @@ def route_node(state: GlobalState) -> GlobalState:
     return {"route": route_query(state["query"])}
 
 
-def research_entry(state: GlobalState):
+def research_entry(state: GlobalState, config: RunnableConfig | None = None):
 
     research_state: ResearchState = {
         "query": state["query"],
-        "messages": [],
+        "messages": list(state.get("messages", [])),
     }
 
-    result = research_graph.invoke(research_state)
+    result = research_graph.invoke(research_state, config=config)
 
-    return {"final_answer": result["final_answer"]}
+    return {
+        "messages": result.get("messages", []),
+        "final_answer": result["final_answer"],
+    }
 
 
-def web_search_entry(state: GlobalState):
+def web_search_entry(state: GlobalState, config: RunnableConfig | None = None):
 
-    result = web_search_graph.invoke({"query": state["query"], "web_findings": []})
+    result = web_search_graph.invoke(
+        {"query": state["query"], "web_findings": []},
+        config=config,
+    )
 
     web_results = "\n".join(f"- {item}" for item in result.get("web_findings", []))
 
@@ -48,6 +56,7 @@ def direct_response_entry(state: GlobalState):
     return {
         "final_answer": format_final_response_general(
             query=state["query"],
+            messages=state.get("messages", []),
         )
     }
 
@@ -82,4 +91,4 @@ builder.add_edge("web_search", END)
 
 builder.add_edge("direct_response", END)
 
-graph = builder.compile()
+graph = builder.compile(checkpointer=checkpointer)
