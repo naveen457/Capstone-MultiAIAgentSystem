@@ -5,4 +5,4 @@
 *.db-shm
 *.db-wal
 .pytest_cache/
-__pycache__/
+*/__pycache__/  
